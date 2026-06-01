@@ -41,8 +41,13 @@ btn.addEventListener('click', () => {
     const diff = userSelectedDate - new Date();
 
     if (diff < 1000) {
+      displayedlDays.textContent = '00';
+      displayedHours.textContent = '00';
+      displayedMinutes.textContent = '00';
+      displayedSeconds.textContent = '00';
       dateInput.disabled = false;
       clearInterval(intervalId);
+      return;
     }
     const { days, hours, minutes, seconds } = convertMs(diff);
     displayedlDays.textContent = addLeadingZero(days);
