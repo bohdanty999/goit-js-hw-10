@@ -21,7 +21,7 @@ const fp = flatpickr(dateInput, {
   minuteIncrement: 1,
   onClose(selectedDates) {
     const diff = selectedDates[0] - new Date();
-    if (diff < 0) {
+    if (diff <= 0) {
       iziToast.show({
         message: 'Please choose a date in the future',
       });
@@ -39,11 +39,12 @@ btn.addEventListener('click', () => {
   dateInput.disabled = true;
   intervalId = setInterval(() => {
     const diff = userSelectedDate - new Date();
-    const { days, hours, minutes, seconds } = convertMs(diff);
+
     if (diff < 1000) {
       dateInput.disabled = false;
       clearInterval(intervalId);
     }
+    const { days, hours, minutes, seconds } = convertMs(diff);
     displayedlDays.textContent = addLeadingZero(days);
     displayedHours.textContent = addLeadingZero(hours);
     displayedMinutes.textContent = addLeadingZero(minutes);
